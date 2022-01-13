@@ -1,9 +1,9 @@
-import './App.css';
+import './App.scss';
 import InstancesTable from './components/InstancesTable/InstancesTable';
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <InstancesTable />
     </div>
   );
