@@ -2,16 +2,18 @@ import React from "react";
 import { useTable, useSortBy, usePagination } from 'react-table';
 import { generateData } from "../../helper";
 
-import classes from './InstancesTable.module.scss';
+import Userfront from "@userfront/react";
+
+import classes from './Dashboard.module.scss';
 import awsIcon from '../../icons/aws-icon.svg';
 
-function InstancesTable() {
+function Dashboard() {
   const data = React.useMemo(() => generateData(), []);
   const columns = React.useMemo(
     () => [
       {
         Header: 'Name',
-        accessor: 'name', // accessor is the "key" in the data
+        accessor: 'name',
       },
       {
         Header: 'ID',
@@ -58,17 +60,20 @@ function InstancesTable() {
     state: { pageIndex, pageSize }
   } = useTable({ columns, data, initialState: { pageIndex: 0, pageSize: 20 } }, useSortBy, usePagination);
 
+  Userfront.init("vbqq5wjb");
+
   return (
     <div className={classes.container}>
       <header className={classes.header}>
-        <img className={classes.logo}
+        <img className={classes['header-logo']}
           src={awsIcon}
           alt="amazon web services logo"
         />
-        <h1>Amazon EC2</h1>
+        <h1 className={classes['header-title']}>Amazon EC2</h1>
+        <button className={classes['header-btn-logout']} onClick={Userfront.logout}>Logout</button>
       </header>
 
-      <table {...getTableProps()}>
+      <table {...getTableProps()} className={classes.table}>
         <thead>
           {// Loop over the header rows
             headerGroups.map(headerGroup => (
@@ -118,16 +123,16 @@ function InstancesTable() {
         </tbody>
       </table>
       <div className={classes.pagination}>
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage} className={classes.btn}>
+        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage} className={classes['pagination-btn']}>
           {'<<'}
         </button>{' '}
-        <button onClick={() => previousPage()} disabled={!canPreviousPage} className={classes.btn}>
+        <button onClick={() => previousPage()} disabled={!canPreviousPage} className={classes['pagination-btn']}>
           {'<'}
         </button>{' '}
-        <button onClick={() => nextPage()} disabled={!canNextPage} className={classes.btn}>
+        <button onClick={() => nextPage()} disabled={!canNextPage} className={classes['pagination-btn']}>
           {'>'}
         </button>{' '}
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage} className={classes.btn}>
+        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage} className={classes['pagination-btn']}>
           {'>>'}
         </button>{' '}
         <span>
@@ -165,4 +170,4 @@ function InstancesTable() {
 
 }
 
-export default InstancesTable;
+export default Dashboard;
