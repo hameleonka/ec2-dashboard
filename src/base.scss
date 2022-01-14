@@ -1,0 +1,24 @@
+//variables
+//colors
+$bgnd_dark: #232f3e;
+$bgnd_light: #ddd;
+$text_white: #ffffff;
+$text_light: #ddd;
+$border-dark: #616161;
+$btn-action: #5e72e4;
+
+//state colors
+$text_green: #00e676;
+$text_yellow: #ffea00;
+$text_orange: #ff9100;
+$text_red: #ff3d00;
+$text_grey: #bdbdbd;
+$text_dark_grey: #9e9e9e;
+
+//common classes
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: 5px;
+}

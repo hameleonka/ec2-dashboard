@@ -8,11 +8,20 @@ import Userfront from "@userfront/react";
 import Login from "./components/Login/Login";
 import Dashboard from './components/Dashboard/Dashboard';
 
+const AppRoutes = {
+  LOGIN: '/login',
+  DASHBOARD: '/dashboard',
+}
+
+function isLoggedIn() {
+  return Userfront.tokens.accessToken;
+}
+
 function RequireAuth({ children }) {
   let location = useLocation();
 
-  if (!Userfront.tokens.accessToken) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+  if (!isLoggedIn()) {
+    return <Navigate to={AppRoutes.LOGIN} state={{ from: location }} replace />;
   }
   return children;
 }
@@ -21,10 +30,10 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<Navigate to="/login" />} />
-        <Route path="/login" element={<Login />} />
+        <Route exact path="/" element={<Navigate to={isLoggedIn() ? AppRoutes.DASHBOARD : AppRoutes.LOGIN} />} />
+        <Route path={AppRoutes.LOGIN} element={<Login />} />
         <Route
-          path="/dashboard"
+          path={AppRoutes.DASHBOARD}
           element={
             <RequireAuth>
               <Dashboard />

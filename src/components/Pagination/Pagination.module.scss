@@ -1,0 +1,37 @@
+@import "../../base.scss";
+
+.pagination {
+  padding: 0.5rem;
+
+  &-btn {
+    @extend .btn;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid $border-dark;
+
+    &:last-of-type {
+      margin-right: 2rem;
+    }
+    &:disabled {
+      background-color: $bgnd_light;
+    }
+  }
+
+  &-input {
+    padding: 0.4rem;
+    outline: none;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid $border-dark;
+    margin-left: 1rem;
+  }
+
+  .page-input {
+    @extend .pagination-input;
+    width: 4rem;
+  }
+
+  .show-input {
+    @extend .pagination-input;
+    width: 6rem;
+  }
+}

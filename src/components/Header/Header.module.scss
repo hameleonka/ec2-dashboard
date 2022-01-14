@@ -1,0 +1,26 @@
+@import "../../base.scss";
+
+.header {
+  display: flex;
+  vertical-align: middle;
+
+  &-logo {
+    width: 4rem;
+    height: auto;
+    margin-right: 2rem;
+  }
+
+  &-title {
+    color: $text_white;
+  }
+
+  &-btn-logout {
+    @extend .btn;
+    align-self: center;
+    margin-left: auto;
+    background-color: $btn-action;
+    padding: 0.5rem;
+    color: $text_white;
+    border: 1px solid $btn-action;
+  }
+}
