@@ -1,24 +1,28 @@
+import React from 'react';
 import {
-  BrowserRouter as Router, Routes, Route, Navigate,
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
   useLocation,
-} from "react-router-dom";
+} from 'react-router-dom';
 
-import Userfront from "@userfront/react";
+import Userfront from '@userfront/react';
 
-import Login from "./components/Login/Login";
+import Login from './components/Login/Login';
 import Dashboard from './components/Dashboard/Dashboard';
 
 const AppRoutes = {
   LOGIN: '/login',
   DASHBOARD: '/dashboard',
-}
+};
 
 function isLoggedIn() {
   return Userfront.tokens.accessToken;
 }
 
 function RequireAuth({ children }) {
-  let location = useLocation();
+  const location = useLocation();
 
   if (!isLoggedIn()) {
     return <Navigate to={AppRoutes.LOGIN} state={{ from: location }} replace />;
@@ -30,7 +34,15 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<Navigate to={isLoggedIn() ? AppRoutes.DASHBOARD : AppRoutes.LOGIN} />} />
+        <Route
+          exact
+          path="/"
+          element={
+            <Navigate
+              to={isLoggedIn() ? AppRoutes.DASHBOARD : AppRoutes.LOGIN}
+            />
+          }
+        />
         <Route path={AppRoutes.LOGIN} element={<Login />} />
         <Route
           path={AppRoutes.DASHBOARD}

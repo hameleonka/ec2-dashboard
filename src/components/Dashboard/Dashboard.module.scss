@@ -1,8 +1,9 @@
-@import "../../base.scss";
+@import '../../base.scss';
 
 .container {
   display: flex;
   max-width: 1600px;
+  min-width: 950px;
   flex-direction: column;
   justify-content: center;
 }

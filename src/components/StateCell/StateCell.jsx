@@ -1,3 +1,5 @@
+import React from 'react';
+
 import classes from './StateCell.module.scss';
 
 function StateCell({ cell: { value } }) {
@@ -27,9 +29,7 @@ function StateCell({ cell: { value } }) {
       break;
   }
 
-  return (
-    <span className={stateClass}>{value}</span >
-  )
+  return <span className={stateClass}>{value}</span>;
 }
 
 export default StateCell;
