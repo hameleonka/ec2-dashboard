@@ -25,7 +25,6 @@ function StateCell({ cell: { value } }) {
       stateClass = classes.dark_grey;
       break;
     default:
-      stateClass = '';
       break;
   }
 
