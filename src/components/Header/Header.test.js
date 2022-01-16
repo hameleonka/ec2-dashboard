@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
+import userEvent from '@testing-library/user-event';
 import Header from './Header';
 import Userfront from '@userfront/react';
 
