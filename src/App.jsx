@@ -1,18 +1,12 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-} from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
 import Userfront from '@userfront/react';
 
 import Login from './components/Login/Login';
 import Dashboard from './components/Dashboard/Dashboard';
 
-const AppRoutes = {
+export const AppRoutes = {
   LOGIN: '/login',
   DASHBOARD: '/dashboard',
 };
@@ -32,28 +26,24 @@ function RequireAuth({ children }) {
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={
-            <Navigate
-              to={isLoggedIn() ? AppRoutes.DASHBOARD : AppRoutes.LOGIN}
-            />
-          }
-        />
-        <Route path={AppRoutes.LOGIN} element={<Login />} />
-        <Route
-          path={AppRoutes.DASHBOARD}
-          element={
-            <RequireAuth>
-              <Dashboard />
-            </RequireAuth>
-          }
-        />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <Navigate to={isLoggedIn() ? AppRoutes.DASHBOARD : AppRoutes.LOGIN} />
+        }
+      />
+      <Route path={AppRoutes.LOGIN} element={<Login />} />
+      <Route
+        path={AppRoutes.DASHBOARD}
+        element={
+          <RequireAuth>
+            <Dashboard />
+          </RequireAuth>
+        }
+      />
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
   );
 }
 
