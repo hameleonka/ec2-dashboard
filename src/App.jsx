@@ -30,7 +30,10 @@ function App() {
       <Route
         path="/"
         element={
-          <Navigate to={isLoggedIn() ? AppRoutes.DASHBOARD : AppRoutes.LOGIN} />
+          <Navigate
+            replace
+            to={isLoggedIn() ? AppRoutes.DASHBOARD : AppRoutes.LOGIN}
+          />
         }
       />
       <Route path={AppRoutes.LOGIN} element={<Login />} />
